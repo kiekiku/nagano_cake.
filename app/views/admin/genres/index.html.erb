@@ -1,2 +1,50 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<style>
+  .btn {
+    width: 100px;
+  }
+  .change {
+    display: none;
+  }
+  .show {
+    display: inline-block;
+  }
+</style>
+
+<div class="index-container" style="width:50%; margin: 20px auto;">
+
+  <h3>ジャンル管理画面</h3>
+
+  <!-- ジャンル追加フォーム -->
+  <%= form_for(@genre, url:admin_genres_path) do |f| %>
+
+    <div class="form-group">
+      <p>ジャンル追加</p>
+      <%= f.text_field :name %>
+      <%= f.submit '追加', class:"btn btn-info btn-md" %>
+    </div>
+  <% end %>
+
+  <!-- ジャンル一覧/使用切り替え/編集 -->
+
+  <table class="table">
+      <tr>ジャンル一覧</tr>
+        <% @genres.each_with_index do |genre, index| %>
+            <%= form_for(genre, url:admin_genre_path(genre), method: :patch) do |f| %>
+          <tr>
+            <td id="form_<%= index %>" class="change">
+                <%= text_field_tag "name[#{genre.id}]", genre.name %>
+            </td>
+            <td id="title_<%= index %>" class="change show">
+                <%= genre.name %>
+            </td>
+
+            <td>
+            <a class="btn btn-primary change show" id="edit_<%= index %>">編集する</a>
+            <%= f.submit "更新する", class:"btn btn-info change", id:"update_#{index}" %>
+	          </td>
+        <% end %>
+      <% end %>
+    </tr>
+</table>
+
+</div>

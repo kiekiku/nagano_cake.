@@ -10,6 +10,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 root to: 'public/homes#top'
   namespace :admin do
+    root to: 'homes#top'
     resources :orders
     resources :customers
     resources :genres
@@ -22,7 +23,7 @@ root to: 'public/homes#top'
     resources :cart_items
     resources :customers
     resources :items
-   resources :homes
+    resources :homes
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

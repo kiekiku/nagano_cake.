@@ -1,5 +1,5 @@
 <div class="container">
-  
+
 <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">管理者ログイン</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -14,7 +14,7 @@
   　</div>
 
   <div class="actions">
-    <%= f.submit "ログイン", class:"btn btn-success", style:"display:block; margin: 0 auto;" %>
+    <%= f.submit "ログイン", admin_root_path, class:"btn btn-bule" %>
   </div>
 <% end %>
 
