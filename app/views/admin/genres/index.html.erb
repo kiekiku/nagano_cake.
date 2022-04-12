@@ -12,39 +12,27 @@
 
 <div class="index-container" style="width:50%; margin: 20px auto;">
 
-  <h3>ジャンル管理画面</h3>
+  <h3>ジャンル一覧・追加</h3>
 
-  <!-- ジャンル追加フォーム -->
-  <%= form_for(@genre, url:admin_genres_path) do |f| %>
-
+  <%= form_with @genre, url: admin_genres_path do |f| %>
     <div class="form-group">
-      <p>ジャンル追加</p>
-      <%= f.text_field :name %>
-      <%= f.submit '追加', class:"btn btn-info btn-md" %>
+       <label for="genre">ジャンル名</label>
+　　　　<%= f.text_field :name %>
+        <%= f.submit '新規登録', class:"btn btn-success btn-info btn-md" %>
     </div>
   <% end %>
 
-  <!-- ジャンル一覧/使用切り替え/編集 -->
-
   <table class="table">
       <tr>ジャンル一覧</tr>
-        <% @genres.each_with_index do |genre, index| %>
-            <%= form_for(genre, url:admin_genre_path(genre), method: :patch) do |f| %>
-          <tr>
-            <td id="form_<%= index %>" class="change">
-                <%= text_field_tag "name[#{genre.id}]", genre.name %>
-            </td>
-            <td id="title_<%= index %>" class="change show">
-                <%= genre.name %>
-            </td>
 
-            <td>
-            <a class="btn btn-primary change show" id="edit_<%= index %>">編集する</a>
-            <%= f.submit "更新する", class:"btn btn-info change", id:"update_#{index}" %>
-	          </td>
+        <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+            <td><%= link_to "編集する", edit_admin_genre_path(@genre.id), class: "btn btn-sm btn-success" %></td>
         <% end %>
-      <% end %>
-    </tr>
-</table>
+        </tbody>
+      </tr>
+  </table>
 
 </div>

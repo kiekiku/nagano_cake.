@@ -5,10 +5,10 @@ class Admin::GenresController < ApplicationController
   end
 
   def create
-    @genre = Genre.new
+    @genre = Genre.new(genre.params)
     if @genre.save
       flash[:success] = "登録に成功しました"
-      redirect_to admin_genres_path
+      redirect_to admins_genres_path
     else
       flash[:warning] = "入力内容を確認してください"
   		render :index
@@ -24,7 +24,7 @@ class Admin::GenresController < ApplicationController
     @genre.name = params[:name][@genre.id.to_s]
     @genre.save
     flash[:success] = "更新に成功しました"
-    redirect_to admins_genres_path
+    redirect_to admin_genres_path
   end
 
   private
