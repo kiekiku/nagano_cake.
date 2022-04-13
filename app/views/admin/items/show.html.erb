@@ -1,18 +1,91 @@
+<style>
+	header {
+		width: 100%;
+		height: 181px;
+		border-bottom: 1px solid #dad7d7;
+		padding: 20px;
+	}
+	ul {
+		list-style: none;
+	}
+
+	li {
+		display: inline-block;
+		color:#694d49;
+		margin-right: 10px;
+	}
+</style>
+<div id="header">
+<p>LOGO</p>
+<div class="box" style="margin: 0 auto; text-align: center;">
+        <ul>
+          <li>
+            <%= link_to "About" %>
+          </li>
+          <li>
+            <%= link_to "商品一覧", items_path %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_customer_registration_path %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_customer_session_path %>
+          </li>
+          <div class="input-group">
+            <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="キーワードを入力"></input>
+              <span class="input-group-btn input-group-append">
+                <%= link_to "検索", class:"btn btn-search btn-primary" do %>
+                 <strong><i class="fas fa-search"></i></strong>
+                <% end %>
+              </span>
+          </div>
+        </ul>
+      </div>
+</header>
 <h3>商品詳細</h3>
 
-<div class = "col-md-3">
-    <!-- 商品画像 -->
-      <%= attachment_image_tag @item, :item_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x100" %>
+    <div class="row" style="width: 90%; margin: 20px auto;">
+  <div class="col-xs-1" ></div>
+  <div class="col-xs-5" style ="margin: 100px 0 100px 0">
+    <%= attachment_image_tag @item, :image,style: "width:100%; "%>
+  </div>
+  <div class="col-xs-6" style ="margin: 100px 0 100px 0">
+
+    <table class="table">
+	  <tr>
+		<th>商品名</th>
+		<td><%= @item.name %></td>
+	  </tr>
+
+	  <tr>
+		<th>商品説明</th>
+		<td><%= @item.introduction %></td>
+	  </tr>
+
+	  <tr>
+	    <th>ジャンル</th>
+		<td><%= @item.genre.name %></td>
+	  </tr>
+
+	  <tr>
+        <th>税込価格 （税抜価格）</th>
+		<td><%= addTax(@item.price) %>   (<%= @item.price %>)  円</td>
+	  </tr>
+
+	  <tr>
+	    <th>販売ステータス</th>
+		<td>
+		  <% if @item.is_stopped == false %>
+		    販売中
+		  <% elsif @item.is_stopped == true %>
+		    販売停止
+		  <% end %>
+		</td>
+	  </tr>
+	  </table>
+
+	  <%= link_to edit_admin_item_path(@item.id) do%>
+		<label class="btn btn-info">編集する</label>
+	  <% end %>
+  </div>
 </div>
-    <div class = "col-md-6">
-      <!-- 商品名 -->
-      <%= @item.name %><br>
-      <!-- 商品説明 -->
-      <%= @item.description %><br>
-      <!-- ジャンル-->
-      <%= @item.genre %><br>
-      <!-- 価格 -->
-      <%= @item.tax_included.to_s(:delimited) %>円<br>
-     
-     
-    </div>

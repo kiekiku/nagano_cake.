@@ -1,24 +1,18 @@
 class Admin::ItemsController < ApplicationController
-  def new
-  end
-
-  def index
-  end
-
-  def show
-  end
-
-  def edit
-  end
-end
 #ログインユーザーのみproduct#indexは閲覧可
   before_action :authenticate!, except: [:index]
 #退会済みユーザー
   before_action :user_is_deleted, except: [:index]
 
+  def new
+    @item = Item.new
+  end
+
+  def edit
+  end
+
 #商品一覧ページ
 	def index
-
         if params["genre"]
         	@items = Item.active.where(genre_id: params["genre"])
         else
@@ -47,6 +41,7 @@ end
 		end
 	end
 
+end
 	private
 
 #ストロングパラメーター
