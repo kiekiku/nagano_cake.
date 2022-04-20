@@ -1,2 +1,109 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<style>
+	h4 {
+		border-left: 2px solid #2D6F4C;
+		padding: 10px;
+	}
+
+	.glyphicon,
+	.text {
+		color: #2d714c;
+	}
+
+	.text {
+		font-size: 12px;
+	}
+
+</style>
+
+
+
+<div class="row" style="width: 60%; margin: 20px auto;">
+<h4>購入情報入力</h4>
+<hr>
+<%= form_for(@order) do |f| %>
+	<%= f.hidden_field :user_id %>
+	<div class="form-group">
+		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
+			<p class="text">ご希望のお支払い方法を選択してください。</p>
+		<div class="radio">
+			<label><%= f.radio_button :payment, :クレジットカード %>クレジットカード</label>
+		</div>
+		<div class="radio">
+			<label><%= f.radio_button :payment, :銀行振込 %>銀行振込</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
+		  <p class="text">ご希望のお届け先を選択してください。</p>
+		<!-- 自宅 -->
+		<div class="radio">
+			<label>
+				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所:
+			</label>
+			<span>〒<%= current_user.postal_code %> <%= current_user.address %></span>
+		</div>
+
+
+		<!-- 登録した配送先 -->
+		<div class="radio">
+			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
+		</div>
+			<%= collection_select(:ShipToAddress, :id, @ads, :id, :address) %>
+
+		<!-- 新しく配送先を設定-->
+		<div class="radio">
+			<label>
+				<%= radio_button_tag("_add", "newAdd") %>
+				新しいお届け先
+			</label>
+		</div>
+
+		<div id="form">
+			<p class="text">ご希望のお届け先を入力してください。</p>
+			<%= fields_for :ship_to_address do |a| %>
+
+		<div class="form-group">
+			<label for="inputPostalCode">郵便番号</label>
+				<%= a.text_field :postal_code, class:"form-control", id:"inputPostalCode", style:"width:30%;" %>
+		</div>
+
+		<div class="form-group">
+			<label for="inputAddress">住所</label>
+				<%= a.text_field :address, class:"form-control", id:"inputAddress", style:"width:70%;" %>
+		</div>
+
+		<div class="form-group">
+			<label>姓・名</label>
+			<div>
+				<%= a.text_field :last_name, class:"form-control col-xs-4", style:"width:30%;" %>
+				<%= a.text_field :first_name, class:"form-control col-xs-4", style:"width:30%;" %>
+			</div>
+		</div>
+
+		<div class="row" style="margin:10px 0;"></div>
+
+		<div class="form-group">
+			<label>カナ</label>
+			<div>
+				<%= a.text_field :last_name_kana, class:"form-control col-xs-4", style:"width:30%;" %>
+				<%= a.text_field :first_name_kana, class:"form-control col-xs-4", style:"width:30%;" %>
+			</div>
+		</div>
+
+		<div class="row" style="margin:10px 0;"></div>
+
+		<div class="form-group">
+			<label for="inputPhone">電話</label>
+				<%= a.telephone_field :phone , class:"form-control", id:"inputPhone", style:"width:40%;" %>
+		</div>
+			<% end %>
+		</div>
+	</div>
+
+	<hr>
+	<div class="text-center">
+		<%= f.submit '登録する', class:"btn btn-success" %>
+	</div>
+<% end %>
+</div>
