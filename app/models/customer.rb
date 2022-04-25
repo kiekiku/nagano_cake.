@@ -4,7 +4,6 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   before_create :create_name
-  def create_name
-    self.name = "#{firstName} #{lastName}"
-  end
+  has_many :order, dependent: :destroy
+  
 end
