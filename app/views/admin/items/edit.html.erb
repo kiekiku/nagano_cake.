@@ -1,5 +1,5 @@
 <div class="row" style= "width: 80%; margin: 20px auto;">
-  <%= form_for(@item, url:admins_product_path, method: :patch) do |f| %>
+  <%= form_with model: @item, url:admin_item_path, method: :patch do |f| %>
     <div class="form-horizontal">
       <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">商品編集登録画面</h4>
 
@@ -13,7 +13,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">画像投稿</label>
         <div class="col-sm-10">
-          <%= f.attachment_field :image  %>
+          <%= f.file_field :image  %>
         </div>
       </div>
 
