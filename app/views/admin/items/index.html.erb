@@ -1,3 +1,13 @@
+<div class="box" style="margin: 0 auto; text-align: center;">
+	<ul>
+		<li><%=link_to '商品一覧', admin_items_path %></li>
+		<li><%=link_to '会員一覧', admin_customers_path %></li>
+		<li><%=link_to '注文履歴一覧', admin_root_path %></li>
+		<li><%=link_to 'ジャンル一覧', admin_genres_path %></li>
+		<li><%=link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+	</ul>
+</div>
+
 <style>
  th {
  	background: #dad7d7;
@@ -24,7 +34,7 @@
 		<tr>
 			<td><%= item.id %></td>
 			<td>
-					<%= attachment_image_tag item, :image, :fill, 50, 50 %>
+					<%= image_tag @item.image(50,50) %>
 					<%= link_to admin_item_path(item.id) do %>
 					<%= item.name %>
 					<% end %>

@@ -2,6 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   def index
     @items = Item.all
+    @item = Item.find(params[:item_id])
   end
 
   def new
@@ -37,7 +38,7 @@ class Admin::ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:product).permit(:name, :image, :price, :introduction, :genre_id, :is_stopped)
+      params.require(:item).permit(:name, :image, :price, :introduction, :genre_id, :is_stopped)
     end
 end
 
