@@ -15,7 +15,7 @@
       <div class="form-group">
         <label class="col-sm-2"></label>
         <div class="col-sm-10">
-          <%= attachment_image_tag @item, :image, :fill, 400, 200,　fallback: "no_image.jpg", :align => "center"%>
+          <%= image_tag @item.image, size:"100x100",fallback: "no_image.jpg"%>
         </div>
       </div>
 
@@ -42,7 +42,7 @@
 
       <div class="form-group">
         <label class="col-sm-2 control-label">ジャンル</label>
-        <%= f.collection_select :genre_id, Genre.where(is_disable: false), :id, :name %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name %>
       </div>
 
       <div class="form-group">
@@ -52,7 +52,7 @@
 
       <div class="form-group">
         <label class="col-sm-2 control-label">販売ステータス</label>
-        <%= f.select :is_stopped,{販売中:false, 販売停止:true}%>
+        <%= f.select :is_active,{販売中:true, 販売停止:false}%>
       </div>
 
       <div class="actions">

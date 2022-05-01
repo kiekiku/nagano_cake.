@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   def index
     @items = Item.all
-    @item = Item.find(params[:item_id])
+    #@item = Item.find(params[:id])
   end
 
   def new
@@ -11,9 +11,10 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.is_active = true
     if @item.save
       flash[:success] = "登録に成功しました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       flash[:warning] = "入力内容を確認してください"
       render :new
@@ -38,7 +39,7 @@ class Admin::ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:name, :image, :price, :introduction, :genre_id, :is_stopped)
+      params.require(:item).permit(:name, :price, :introduction, :genre_id, :is_active, :image)
     end
 end
 

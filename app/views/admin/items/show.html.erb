@@ -47,11 +47,12 @@
     <div class="row" style="width: 90%; margin: 20px auto;">
   <div class="col-xs-1" ></div>
   <div class="col-xs-5" style ="margin: 100px 0 100px 0">
-    <%= attachment_image_tag @item, :image,style: "width:100%; "%>
+    <%= image_tag @item.image, size:"100x100" %>
   </div>
   <div class="col-xs-6" style ="margin: 100px 0 100px 0">
 
     <table class="table">
+
 	  <tr>
 		<th>商品名</th>
 		<td><%= @item.name %></td>
@@ -69,15 +70,15 @@
 
 	  <tr>
         <th>税込価格 （税抜価格）</th>
-		<td><%= addTax(@item.price) %>   (<%= @item.price %>)  円</td>
+		<td><%= (@item.price * 1.1).floor %>   (<%= @item.price %>)  円</td>
 	  </tr>
 
 	  <tr>
 	    <th>販売ステータス</th>
 		<td>
-		  <% if @item.is_stopped == false %>
+		  <% if @item.is_active == true %>
 		    販売中
-		  <% elsif @item.is_stopped == true %>
+		  <% elsif @item.is_active == false %>
 		    販売停止
 		  <% end %>
 		</td>

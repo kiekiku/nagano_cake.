@@ -9,3 +9,17 @@ Admin.create!(
     email: "a@a",
     password: "aaaaaa"
 )
+
+Customer.create!(
+
+    email: "b@b",
+    password: "bbbbbb",
+    last_name: "山田",
+    first_name: "花子",
+    last_name_kana: "ヤマダ",
+    first_name_kana: "ハナコ",
+    postal_code: "111-1111",
+    address: "東京都渋谷区",
+    telephone_number: "000-0000",
+    is_active: true
+)

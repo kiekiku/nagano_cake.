@@ -34,18 +34,18 @@
 		<tr>
 			<td><%= item.id %></td>
 			<td>
-					<%= image_tag @item.image(50,50) %>
+					<%= image_tag item.image, size:"100x100" %>
 					<%= link_to admin_item_path(item.id) do %>
 					<%= item.name %>
 					<% end %>
 			</td>
 			<td><%= item.price %></td>
 			<td><%= item.genre.name %></td>
-			<td>item
-				<% if item.is_stopped? %>
-					<span class="badge" style="background:#D52438">販売停止</span>
-				<% else %>
+			<td>
+				<% if item.is_active? %>
 					<span class="badge" style="background:#8BCE9A">販売中</span>
+				<% else %>
+					<span class="badge" style="background:#D52438">販売停止</span>
 				<% end %>
 			</td>
 		</tr>
