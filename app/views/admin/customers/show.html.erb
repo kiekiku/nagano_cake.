@@ -1,5 +1,5 @@
 <div class="show-container" style="width:50%; margin: 20px auto;">
-	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">マイページ</h4>
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h4>
 
 	<table class="table table-condensed">
 		<tbody>
@@ -21,23 +21,25 @@
 			</tr>
 			<tr>
 				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">電話番号</th>
-				<td><%= @customer.phone %></td>
+				<td><%= @customer.telephone_number %></td>
 			</tr>
 			<tr>
 				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">メールアドレス</th>
 				<td style="border-bottom: 1px solid #dad7d7;"><%= @customer.email %></td>
 			</tr>
-
+			<tr>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">会員ステータス</th>
+				<% if @customer.is_active == true %>
+					<td><span class="badge" style="background:green">有効</span></td>
+				<% else %>
+					<td><span class="badge" style="background:red">退会</span></td>
+				<% end %>
+			</tr>
 		</tbody>
 	</table>
-	<%= link_to '登録情報を編集する', edit_customer_path(@customer), class:"btn btn-info" %>
-	<%= link_to 'パスワードを編集する', edit_customer_registration_path, class:"btn btn-success" %>
-	<hr>
-	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送先</h4>
-		<%= link_to ship_to_addresses_path do %>
-			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
-		<% end %>
-	<hr>
+	<%= link_to '編集する', edit_admin_customer_path(@customer), class:"btn btn-info" %>
+
+
 	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴</h4>
 		<%= link_to orders_path(id: @customer.id) do %>
 			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
