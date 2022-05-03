@@ -3,23 +3,21 @@
 	</div>
 
 	<div class="col-xs-5" style ="margin: 100px 0 100px 0">
-		<%= attachment_image_tag @item, :image,style: "width:100%; "%>
+		<%= image_tag @items.image,size:"100x100"%>
 	</div>
 
 	<div class="col-xs-4" style ="margin: 100px 0 100px 0">
-		<h3><%= @item.name %></h3>
-		<p><%= @item.introduction%></p>
+		<h3><%= @items.name %></h3>
+		<p><%= @items.introduction%></p>
 	<!-- application_helper (税込価格	) -->
-		<h4><%= addTax(@item.price)%>
+		<h4><%= (@items.price*1.1).floor %>
 		<span>円(税込価格)</span>
 		</h4>
 	<!-- #選択型のプルダウンメニュー -->
-	<%= form_for(@cart_item) do |f| %>
+	<%= form_with model: @cart_item do |f| %>
 		<%= f.hidden_field :item_id %>
 		<%= f.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
 		<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
 	<% end %>
 	</div>
 	</div>
-© 2022 GitHub, Inc.
-Terms

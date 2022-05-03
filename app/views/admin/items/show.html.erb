@@ -16,32 +16,15 @@
 	}
 </style>
 <div id="header">
-<p>LOGO</p>
+
 <div class="box" style="margin: 0 auto; text-align: center;">
-        <ul>
-          <li>
-            <%= link_to "About" %>
-          </li>
-          <li>
-            <%= link_to "商品一覧", items_path %>
-          </li>
-          <li>
-            <%= link_to "新規登録", new_customer_registration_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_customer_session_path %>
-          </li>
-          <div class="input-group">
-            <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="キーワードを入力"></input>
-              <span class="input-group-btn input-group-append">
-                <%= link_to "検索", class:"btn btn-search btn-primary" do %>
-                 <strong><i class="fas fa-search"></i></strong>
-                <% end %>
-              </span>
-          </div>
-        </ul>
-      </div>
-</header>
+
+          <ul><%= link_to "About" %></ul>
+          <ul><%= link_to "商品一覧", admin_items_path %></ul>
+          <ul><%= link_to "新規登録", new_customer_registration_path %></ul>
+          <ul><%= link_to "ログイン", new_customer_session_path %></ul>
+</div>
+
 <h3>商品詳細</h3>
 
     <div class="row" style="width: 90%; margin: 20px auto;">

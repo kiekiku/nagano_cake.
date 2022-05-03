@@ -1,3 +1,12 @@
+<div class="box" style="margin: 0 auto; text-align: center;">
+
+		<ul><%=link_to '商品一覧', items_path %></ul>
+		<ul><%=link_to '会員一覧', admin_customers_path %></ul>
+		<ul><%=link_to '注文履歴一覧', admin_root_path %></ul>
+		<ul><%=link_to 'ジャンル一覧', admin_genres_path %></ul>
+		<ul><%=link_to 'ログアウト', destroy_admin_session_path, method: :delete %></ul>
+
+</div>
 <style>
 .each_item {
 	padding: 0px 5px;
@@ -15,21 +24,18 @@
 
 </style>
 
-	<div class="row" style="width: 90%; margin: 20px auto;">
-	<img src="/assets/tart1" alt="非表示", class="eyecatch">
-		<h1>PRODUCTS</h1>
-		<span ><strong>ジャンルで検索</strong></span>
-			<% @genres.each do |genre| %>
-	 				<%= link_to root_path(genre: genre.id) do %>
-	 					<span style = "background-color: #2D714C" class="badge"><%= genre.name %></span>
-	 				<% end %>
-   		 		<% end %>
+
+		<h1>商品一覧</h1>
 
    		 <div class="row">
 			<% @items.each do |item| %>
 					<div class="col-xs-3 each_item">
 						<%= link_to item_path(item) do %>
-						  <%= attachment_image_tag product, :image, style:"width:100%; bottom: 45px;" %>
+						 <% if item.image.attached? %>
+						  <%= image_tag item.image,size:"50x50" %>
+						 <% else %>
+						  <%= image_tag 'no_image', size: "50x50" %>
+						 <% end %>
 						<% end %>
 						<%= item.name %>
 						<%= item.price %>円<br>
