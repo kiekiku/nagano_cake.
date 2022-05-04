@@ -8,16 +8,8 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new(item_id: @items.id)
   end
 
-  def create
-    binding.pry
-  end
-
 private
   def item_params
 		params.require(:item).permit(:image_id, :name, :introduction)
-  end
-
-  def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
   end
 end
