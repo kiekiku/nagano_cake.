@@ -1,8 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
-    @item
-    #@total_price
   end
 
   def create
@@ -14,6 +12,10 @@ class Public::CartItemsController < ApplicationController
 
   def subtotal
     item.with_tax_price * amount
+  end
+
+  def destroy
+    item = CartItem.find(params[:id])
   end
 
   private
