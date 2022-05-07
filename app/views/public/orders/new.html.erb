@@ -20,8 +20,8 @@
 <div class="row" style="width: 60%; margin: 20px auto;">
 <h4>購入情報入力</h4>
 <hr>
-<%= form_for(@order) do |f| %>
-	<%= f.hidden_field :user_id %>
+<%= form_with model: @order do |f| %>
+	<%= f.hidden_field :user_id value: @order %>
 	<div class="form-group">
 		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
 			<p class="text">ご希望のお支払い方法を選択してください。</p>
@@ -41,7 +41,7 @@
 			<label>
 				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所:
 			</label>
-			<span>〒<%= current_user.postal_code %> <%= current_user.address %></span>
+			<span>〒<%= current_customer.postal_code %> <%= current_customer.address %></span>
 		</div>
 
 
@@ -95,7 +95,7 @@
 
 		<div class="form-group">
 			<label for="inputPhone">電話</label>
-				<%= a.telephone_field :phone , class:"form-control", id:"inputPhone", style:"width:40%;" %>
+				<%= a.telephone_field :telephone_number , class:"form-control", id:"inputPhone", style:"width:40%;" %>
 		</div>
 			<% end %>
 		</div>
