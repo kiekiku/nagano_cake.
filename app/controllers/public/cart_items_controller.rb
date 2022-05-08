@@ -16,20 +16,17 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     @cart_items = CartItem.find(params[:id])
-    @cart = current_cart
     @cart_items.destroy
      redirect_to cart_items_path
-    @cart.destroy
-    session[:cart_id] = nil
-    respond_to do |format|
-      format.html { redirect_to items_path, notice: 'カートが空になりました。' }
-      format.json { head :no_content }
-    end
   end
 
+  def destroy_all
+    CartItem.destroy_all
+    redirect_to cart_items_path
+  end
 
   private
     def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount, :image)
+    params.require(:cart_item).permit(:item_id, :amount)
     end
 end

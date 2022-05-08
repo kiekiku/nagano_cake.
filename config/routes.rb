@@ -18,12 +18,15 @@ root to: 'public/homes#top'
   end
 
   scope module: :public do
+    delete 'cart_items' => 'cart_items#destroy_all'
+    get 'about' => 'homes#about'
     resources :addresses
     resources :orders
     resources :cart_items
     resources :customers
     resources :items
     resources :homes
+
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

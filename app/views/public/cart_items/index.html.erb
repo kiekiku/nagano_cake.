@@ -7,7 +7,7 @@
 <div class="row" style="width:100%; height:20px;"></div>
 
 <div style="position:absolute; top: 30px; right: 0;">
-	<%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
+	<%= link_to 'カートを空にする', cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
 
 </div>
 
