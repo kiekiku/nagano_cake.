@@ -8,7 +8,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-root to: 'public/homes#top'
   namespace :admin do
     root to: 'homes#top'
     resources :orders
@@ -18,12 +17,16 @@ root to: 'public/homes#top'
   end
 
   scope module: :public do
+    root to: 'homes#top'
     delete 'cart_items' => 'cart_items#destroy_all'
     get 'about' => 'homes#about'
+    get 'customers/my_page' => 'customers#show'
+    get 'customers/unsubscribe' => 'customers#unsubscribe'
+    get 'orders/conplete' => 'orders#conplete'
     resources :addresses
     resources :orders
-    resources :cart_items
-    resources :customers
+    resources :cart_items, :only => [:index, :create, :update, :destroy]
+    resources :customers, :only => [:index, :create, :edit, :update, :destroy]
     resources :items
     resources :homes
 

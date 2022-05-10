@@ -2,7 +2,7 @@
 
   <!-- 配送先登録フォーム -->
       <h5>配送先/一覧</h5>
-      <%= form_for (@address) do |f| %>
+      <%= form_with model: @address do |f| %>
         <table class="table table-bordered">
 	      <tr>
 		    <th>郵便番号</th>
@@ -14,7 +14,7 @@
 	      </tr>
 	      <tr>
 	  	    <th>電話番号</th>
-	  	    <td><%= f.text_field :phone %></td>
+	  	    <td><%= f.text_field :telephone_number %></td>
 	      </tr>
 	      <tr>
 		    <th>姓/名</th>
@@ -50,7 +50,7 @@
 			<%= ship_to_address.address %>
 		  </td>
 		  <td>
-			<%= ship_to_address.phone %>
+			<%= ship_to_address.telephone_number %>
 		  </td>
 		  <td>
 			<%= ship_to_address.last_name %><%= ship_to_address.first_name %>
