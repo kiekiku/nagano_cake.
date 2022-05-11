@@ -21,7 +21,7 @@
 <h4>購入情報入力</h4>
 <hr>
 <%= form_with model: @order do |f| %>
-	<%= f.hidden_field :user_id value: @order %>
+	<%= f.hidden_field :user_id %>
 	<div class="form-group">
 		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
 			<p class="text">ご希望のお支払い方法を選択してください。</p>
@@ -39,7 +39,7 @@
 		<!-- 自宅 -->
 		<div class="radio">
 			<label>
-				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所:
+				<%= radio_button_tag("_add", "customersAdd") %>ご自身の住所:
 			</label>
 			<span>〒<%= current_customer.postal_code %> <%= current_customer.address %></span>
 		</div>
@@ -49,7 +49,7 @@
 		<div class="radio">
 			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
 		</div>
-			<%= collection_select(:ShipToAddress, :id, @ads, :id, :address) %>
+			<%= collection_select(:id, :address, :name, :postal_code, :customer_id) %>
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">

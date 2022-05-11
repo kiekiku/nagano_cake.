@@ -5,4 +5,4 @@
 <p>退会する場合は、「退会する」をクリックしてください。</p>
 
 <%= link_to '退会しない', edit_customer_path(@customer), class:"btn btn-info" %>
-<%= link_to '退会する', new_customer_registration, class:"btn btn-denger" %>
+<%= link_to '退会する', customers_withdraw_path, method: :patch, class:"btn btn-denger" %>
