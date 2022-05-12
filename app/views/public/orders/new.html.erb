@@ -20,10 +20,10 @@
 <div class="row" style="width: 60%; margin: 20px auto;">
 <h4>購入情報入力</h4>
 <hr>
-<%= form_with model: @order do |f| %>
-	<%= f.hidden_field :user_id %>
+<%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+	<%= f.hidden_field :customer_id %>
 	<div class="form-group">
-		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
+		<label>お支払い方法</label>
 			<p class="text">ご希望のお支払い方法を選択してください。</p>
 		<div class="radio">
 			<label><%= f.radio_button :payment, :クレジットカード %>クレジットカード</label>
@@ -34,7 +34,7 @@
 	</div>
 
 	<div class="form-group">
-		<label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
+		<label>お届け先</label>
 		  <p class="text">ご希望のお届け先を選択してください。</p>
 		<!-- 自宅 -->
 		<div class="radio">
@@ -49,7 +49,7 @@
 		<div class="radio">
 			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
 		</div>
-			<%= collection_select(:id, :address, :name, :postal_code, :customer_id) %>
+			<%= f.select :address_id, @addresses.map{ |address| [address.postal_code + address.address + address.name, address.id] } %>
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
@@ -61,7 +61,7 @@
 
 		<div id="form">
 			<p class="text">ご希望のお届け先を入力してください。</p>
-			<%= fields_for :ship_to_address do |a| %>
+			<%= fields_for :address do |a| %>
 
 		<div class="form-group">
 			<label for="inputPostalCode">郵便番号</label>

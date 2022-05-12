@@ -13,16 +13,8 @@
 		    <td><%= f.text_field :address, style: "width: 80%;" %></td>
 	      </tr>
 	      <tr>
-	  	    <th>電話番号</th>
-	  	    <td><%= f.text_field :telephone_number %></td>
-	      </tr>
-	      <tr>
-		    <th>姓/名</th>
-		    <td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
-	      </tr>
-	      <tr>
-	  	    <th>セイ/メイ</th>
-	  	    <td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
+		    <th>宛名</th>
+		    <td><%= f.text_field :name %></td>
 	      </tr>
 	    </table>
 	      <%= f.submit "登録する", class:"btn btn-primary btn-md" %>
@@ -34,31 +26,25 @@
 	  <tr>
 	    <th>郵便番号</th>
 		<th>住所</th>
-		<th>電話番号</th>
 		<th>宛名</th>
-		<th>あてな</th>
 		<th></th>
 	  </tr>
     </thead>
-	<% @addresses.each do |ship_to_address| %>
+	<% @addresses.each do |address| %>
 	  <tbody>
 	    <tr>
 		  <td>
-			<%= ship_to_address.postal_code %>
+			<%= address.postal_code %>
 		  </td>
 		  <td>
-			<%= ship_to_address.address %>
+			<%= address.address %>
 		  </td>
 		  <td>
-			<%= ship_to_address.telephone_number %>
+			<%= address.name %>
 		  </td>
 		  <td>
-			<%= ship_to_address.last_name %><%= ship_to_address.first_name %>
-		  </td>
-		  <td>
-			<%= ship_to_address.last_name_kana %><%= ship_to_address.first_name_kana %>
-		  </td>
-		  <td>
+		  	</br>
+		  	</br>
 			<%= link_to "編集する", edit_address_path(address), class:"btn btn-primary btn-md" %>
 			<%= link_to "削除する", address_path(address), class:"btn btn-danger btn-md", method: :delete %>
 		  </td>

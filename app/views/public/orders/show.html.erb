@@ -28,9 +28,9 @@
 		<tr>
 			<th>配送先</th>
 			<td>
-				〒<%= @order.ship_postal_code %><br>
-				<%= @order.ship_address %><br>
-				<%= @order.last_name %> <%= @order.first_name %>様
+				〒<%= @order.postal_code %><br>
+				<%= @order.address %><br>
+				<%= @order.name %> 様
 			</td>
 		</tr>
 		<tr>
@@ -39,7 +39,7 @@
 		</tr>
 		<tr>
 			<th>ステータス</th>
-			<td><%= @order.deposit_status %></td>
+			<td><%= @order.status %></td>
 		</tr>
 </table>
 
@@ -74,7 +74,6 @@
 		</tr>
 </table>
 <hr>
-<%= link_to orders_path(id: @order.user_id) do %>
-	<span class="glyphicon glyphicon-chevron-left">注文一覧に戻る</span>
+<%= link_to '注文確定'orders_path(id: @order.cystomer_id) do %>
 <% end %>
 </div>
