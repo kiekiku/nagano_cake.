@@ -14,6 +14,14 @@ class Public::CartItemsController < ApplicationController
     item.with_tax_price * amount
   end
 
+  def update
+    @cart_items = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_item_path
+    end
+  end
+
+
   def destroy
     @cart_items = CartItem.find(params[:id])
     @cart_items.destroy

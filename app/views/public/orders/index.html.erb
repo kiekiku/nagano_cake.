@@ -15,16 +15,16 @@
 		<tr>
 			<td><%= order.created_at.strftime('%Y年%m月%d日') %></td>
 			<td>
-				〒<%= order.ship_postal_code %><br>
-				<%= order.ship_address %><br>
-				<%= order.last_name %><%= order.first_name %> 様
+				〒<%= order.postal_code %><br>
+				<%= order.addresses %><br>
+				<%= order.name %> 様
 			</td>
 			<td>
-				<% order.ordered_items.each do |item| %>
+				<% order.order_details.each do |item| %>
 					<%= item.item.name %><br>
 				<% end %>
 			</td>
-			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
+			<td><%= (order.order_details.sum(:price)) %>円</td>
 			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
 		</tr>
 		<% end %>

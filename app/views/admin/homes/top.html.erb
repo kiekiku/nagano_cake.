@@ -1,12 +1,4 @@
-<div class="box" style="margin: 0 auto; text-align: center;">
-	<ul>
-		<li><%=link_to '商品一覧', admin_items_path %></li>
-		<li><%=link_to '会員一覧', admin_customers_path %></li>
-		<li><%=link_to '注文履歴一覧', admin_root_path %></li>
-		<li><%=link_to 'ジャンル一覧', admin_genres_path %></li>
-		<li><%=link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-	</ul>
-</div>
+
 		<div class="row" style="width: 90%; margin: 20px auto;">
 
 <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴一覧</h4>
@@ -19,12 +11,14 @@
 				</tr>
 				<% @orders.each do |order|%>
 				<tr>
-					<td style ="text-align: center"><%= order.created_at %></td>
+					<td style ="text-align: center">
+						<%= link_to admin_order_path(order.id) do %>
+						<%= order.created_at %>
+						<% end %></td>
 					<td ><%= order.customer.last_name %></td>
 					<td style ="text-align: center"><%= order.order_details.sum(:amount) %></td>
 				</tr>
 
-				<!-- item.today_count  -->
 				<% end %>
 			</table>
 		</div>

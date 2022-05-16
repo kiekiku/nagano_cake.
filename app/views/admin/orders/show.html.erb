@@ -20,6 +20,7 @@
 <h4>注文履歴詳細</h4>
 	<span class="text pull-right">表示金額は全て税込です。</span>
 	<h5>注文情報</h5>
+			<%= form_with model: @order, url: admin_order_path do |f| %>
 <table class="table table-bordered ">
 		<tr>
 			<th>注文日</th>
@@ -28,35 +29,38 @@
 		<tr>
 			<th>配送先</th>
 			<td>
-				〒<%= @order.ship_postal_code %><br>
-				<%= @order.ship_address %><br>
-				<%= @order.last_name %> <%= @order.first_name %>様
+				〒<%= @order.postal_code %><br>
+				<%= @order.addresses %><br>
+				<%= @order.name %>様
 			</td>
 		</tr>
 		<tr>
 			<th>支払い方法</th>
-			<td><%= @order.payment %></td>
+			<td><%= @order.payment_method %></td>
 		</tr>
 		<tr>
 			<th>ステータス</th>
-			<td><%= @order.deposit_status %></td>
+			<td><%= f.select :status,{入金待ち:"入金待ち",入金確認:"入金確認",制作中:"制作中",発送準備中:"発送準備中",発送済み:"発送済み"}%></td>
+			<td><%= f.submit "更新" %></td>
+
 		</tr>
 </table>
+			<% end %>
 
 <h5>請求情報</h5>
 <table class="table table-bordered ">
 	<tbody>
 		<tr>
 			<th>商品合計</th>
-			<td><%= addTax(@order.ordered_items.sum(:price)) %>円</td>
+			<td><%= (@order.order_details.sum(:price)) %>円</td>
 		</tr>
 		<tr>
 			<th>配送料</th>
-			<td><%= @order.postage %>円</td>
+			<td><%= @order.shipping_cost %>円</td>
 		</tr>
 		<tr>
 			<th>ご請求額</th>
-			<td><%= addTax(@order.ordered_items.sum(:price))+ @order.postage %>円</td>
+			<td><%= (@order.order_details.sum(:price))+ @order.shipping_cost %>円</td>
 		</tr>
 	</tbody>
 </table>
@@ -66,15 +70,12 @@
 		<tr>
 			<th>内訳</th>
 			<td>
-			  <% @order.ordered_items.each do |item| %>
-				<%= item..name %> (<%= addTax(item.product.price) %>円/個) ×<%= item.quantity %>個＝
-				<%= addTax(item.price) %>円<br>
+			  <% @order.order_details.each do |item| %>
+				<%= item.item.name %> (<%= (item.item.price*1.1).floor %>円/個) ×<%= item.amount %>個＝
+				<%= (item.price*1.1).floor %>円<br>
 			  <% end %>
 			</td>
 		</tr>
 </table>
-<hr>
-<%= link_to orders_path(id: @order.customer_id) do %>
-	<span class="glyphicon glyphicon-chevron-left">注文一覧に戻る</span>
-<% end %>
+
 </div>

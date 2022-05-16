@@ -30,16 +30,19 @@
 		</td>
 		<td>
 			<!--単価-->
- 			<%= hidden_field_tag :item_price, item.item.price %>
+ 			<%= hidden_field :item_id, value: item.item.price %>
 			<%= (item.item.price*1.1).floor %>
 		</td>
 		<td>
-			<%= hidden_field_tag "item_id[#{item.item.id}]", item.item_id %>
-			<%= number_field_tag "amount[#{item.item.id}]", item.amount, in: 1..10 %>
+			<%= form_with model: @cart_items, url: cart_item_path(@cart_items) do |f| %>
+			<%= hidden_field :amount, value: item.item_id %>
+			<%= f.select :amount, *[1..5] %>
+			<%= f.submit "更新" %>
+			<% end %>
 		</td>
 		<td>
 			<!--小計-->
-			<%= hidden_field_tag "price[#{item.item.id}]", item.item.price %>
+			<%= hidden_field :item_id, value: item.item.price %>
 			<%= (item.item.price*1.1*item.amount).floor %>
 		</td>
 		<td><%= link_to '削除する', cart_item_path(@cart_items.ids), method: :delete, data: {confirm: "削除しますか？"} %></td>

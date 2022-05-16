@@ -10,6 +10,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   namespace :admin do
     root to: 'homes#top'
+    get 'admin/order' => 'orders#show'
     resources :orders
     resources :customers
     resources :genres
@@ -19,6 +20,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     root to: 'homes#top'
     delete 'cart_items' => 'cart_items#destroy_all'
+    patch 'cart_item' => 'cart_items#update'
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/unsubscribe' => 'customers#unsubscribe'

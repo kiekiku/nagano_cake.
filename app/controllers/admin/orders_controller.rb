@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   def index
     if params[:day]
-      @orders = Order.created_today
+      @orders = Order.created_at
     else
   	   @orders = Order.all
     end
@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-    @items = @order.ordered_items
+    @items = @order.order_details
   end
 
   def update
@@ -18,12 +18,12 @@ class Admin::OrdersController < ApplicationController
   	@order = Order.find(params[:id])
     @order.update(order_params)
     flash[:success] = "更新に成功しました"
-  	redirect_to admins_orders_path
+  	redirect_to admin_root_path
   end
 
   private
   def order_params
-  	params.require(:order).permit(:deposit_status,ordered_items_attributes:[:id, :product_status])
+  	params.require(:order).permit(:postal_code, :addresses, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 
 end

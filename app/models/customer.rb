@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   # def active_for_authentication?
   #   super && (is_deleted == false)
   # end
-
+  def name
+    last_name + first_name
+  end
 
 end
