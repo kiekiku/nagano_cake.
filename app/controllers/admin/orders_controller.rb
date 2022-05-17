@@ -10,11 +10,12 @@ class Admin::OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-    @items = @order.order_details
+    @order_details = @order.order_details
+    @customer = @order.customer
   end
 
   def update
-#orderのdeposit_statusの更新
+
   	@order = Order.find(params[:id])
     @order.update(order_params)
     flash[:success] = "更新に成功しました"

@@ -11,7 +11,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     root to: 'homes#top'
     get 'admin/order' => 'orders#show'
+    #patch 'order_details' => 'order_details#update'
     resources :orders
+    resources :order_details, :only => [:update]
     resources :customers
     resources :genres
     resources :items
@@ -19,8 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root to: 'homes#top'
-    delete 'cart_items' => 'cart_items#destroy_all'
-    patch 'cart_item' => 'cart_items#update'
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/unsubscribe' => 'customers#unsubscribe'

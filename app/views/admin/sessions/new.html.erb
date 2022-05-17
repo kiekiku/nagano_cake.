@@ -1,47 +1,4 @@
-<style>
-	header {
-		width: 100%;
-		height: 181px;
-		border-bottom: 1px solid #dad7d7;
-		padding: 20px;
-	}
-	ul {
-		list-style: none;
-	}
 
-	li {
-		display: inline-block;
-		color:#694d49;
-		margin-right: 10px;
-	}
-</style>
-<div id="header">
-<p>LOGO</p>
-<div class="box" style="margin: 0 auto; text-align: center;">
-        <ul>
-          <li>
-            <%= link_to "About" %>
-          </li>
-          <li>
-            <%= link_to "商品一覧", items_path %>
-          </li>
-          <li>
-            <%= link_to "新規登録", new_customer_registration_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_customer_session_path %>
-          </li>
-          <div class="input-group">
-            <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="キーワードを入力"></input>
-              <span class="input-group-btn input-group-append">
-                <%= link_to "検索", class:"btn btn-search btn-primary" do %>
-                 <strong><i class="fas fa-search"></i></strong>
-                <% end %>
-              </span>
-          </div>
-        </ul>
-      </div>
-</header>
 
 <div class="container" style="width: 50%; margin: 20px auto;">
   <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">管理者ログイン</h4>

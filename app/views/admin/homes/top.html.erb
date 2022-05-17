@@ -15,7 +15,7 @@
 						<%= link_to admin_order_path(order.id) do %>
 						<%= order.created_at %>
 						<% end %></td>
-					<td ><%= order.customer.last_name %></td>
+					<td ><%= order.customer.name %></td>
 					<td style ="text-align: center"><%= order.order_details.sum(:amount) %></td>
 				</tr>
 
