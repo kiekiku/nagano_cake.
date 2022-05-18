@@ -24,7 +24,7 @@
 					<%= item.item.name %><br>
 				<% end %>
 			</td>
-			<td><%= (order.order_details.sum(:price)) %>円</td>
+			<td><%= (order.order_details.sum(:price)*1.1*order.order_details.sum(:amount)).floor %>円</td>
 			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
 		</tr>
 		<% end %>

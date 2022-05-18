@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page])
     #@item = Item.find(params[:id])
   end
 
@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.is_active = true
+    #@item.is_active = true
     if @item.save
       flash[:success] = "登録に成功しました"
       redirect_to admin_item_path(@item.id)

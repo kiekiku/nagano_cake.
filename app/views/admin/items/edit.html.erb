@@ -1,12 +1,4 @@
-<div class="box" style="margin: 0 auto; text-align: center;">
-	<ul>
-		<li><%=link_to '商品一覧', admin_items_path %></li>
-		<li><%=link_to '会員一覧', admin_customers_path %></li>
-		<li><%=link_to '注文履歴一覧', admin_root_path %></li>
-		<li><%=link_to 'ジャンル一覧', admin_genres_path %></li>
-		<li><%=link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-	</ul>
-</div>
+
 <div class="row" style= "width: 80%; margin: 20px auto;">
   <%= form_with model: @item, url:admin_item_path, method: :patch do |f| %>
     <div class="form-horizontal">
@@ -15,7 +7,7 @@
       <div class="form-group">
         <label class="col-sm-2"></label>
         <div class="col-sm-10">
-          <%= image_tag @item.image, size:"100x100",fallback: "no_image.jpg"%>
+          <%= image_tag @item.image, size:"200x200",fallback: "no_image.jpg"%>
         </div>
       </div>
 
