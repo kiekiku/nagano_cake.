@@ -24,9 +24,9 @@
 					<div class="col-xs-3 each_item">
 						<%= link_to item_path(item) do %>
 						 <% if item.image.attached? %>
-						  <%= image_tag item.image,size:"50x50" %>
+						  <%= image_tag item.image,size:"200x200" %>
 						 <% else %>
-						  <%= image_tag 'no_image', size: "50x50" %>
+						  <%= image_tag 'no_image', size: "200x200" %>
 						 <% end %>
 						<% end %>
 						<%= item.name %>

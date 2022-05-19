@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
     if params[:day]
       @orders = Order.created_at
     else
-  	   @orders = Order.all.page(params[:page])
+  	   @orders = Order.all
     end
   end
 
