@@ -56,17 +56,17 @@
 	<p><%= @order.payment_method_i18n %></p>
 
 <h4>お届け先</h4>
-	<p>〒<%= @customer.postal_code %>
-	<%= @customer.address %>
-	<%= @customer.name %>様</p>
+	<p>〒<%= @order.postal_code %>
+	<%= @order.addresses %>
+	<%= @order.name %>様</p>
 
 <hr>
 
 <div class="text-center">
 	<%= form_with model: @order, url: orders_path, method: :post do |f| %>
-	<%= f.hidden_field :postal_code, value: @customer.postal_code %>
-	<%= f.hidden_field :addresses, value: @customer.address %>
-	<%= f.hidden_field :name, value: @customer.name %>
+	<%= f.hidden_field :postal_code, value: @order.postal_code %>
+	<%= f.hidden_field :addresses, value: @order.addresses %>
+	<%= f.hidden_field :name, value: @order.name %>
 	<%= f.hidden_field :shipping_cost, value: 800 %>
 	<%= f.hidden_field :payment_method, value: @order.payment_method %>
 	<%= f.hidden_field :status, value: "入金待ち" %>

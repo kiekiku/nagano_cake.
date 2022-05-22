@@ -7,11 +7,27 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_item = current_customer.cart_items
     @customer = current_customer
+    @address = Address.find(params[:order][:address_id])
     @order = Order.new(order_params)
     if params[:order][:payment] == "クレジットカード"
       @order.payment_method  = 0
     elsif params[:order][:payment] == "銀行振込"
       @order.payment_method = 1
+    end
+    if params[:_add] == "customersAdd"
+      @order.postal_code = @customer.postal_code
+      @order.addresses = @customer.address
+      @order.name = @customer.name
+    end
+    if params[:_add] == "shipAdds"
+      @order.postal_code = @address.postal_code
+      @order.addresses = @address.address
+      @order.name = @address.name
+    end
+    if params[:_add] == "newAdd"
+      @order.postal_code = params[:order][:postal_code]
+      @order.addresses = params[:order][:address]
+      @order.name = params[:order][:name]
     end
   end
 
@@ -40,6 +56,6 @@ class Public::OrdersController < ApplicationController
 
   private
     def order_params
-    params.require(:order).permit(:postal_code, :addresses, :name, :shipping_cost, :payment_method, :status, :total_payment)
+    params.require(:order).permit(:postal_code, :addresses, :name, :shipping_cost, :payment_method, :status, :total_payment,:customer_id)
     end
 end
