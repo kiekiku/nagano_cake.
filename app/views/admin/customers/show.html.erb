@@ -29,10 +29,10 @@
 			</tr>
 			<tr>
 				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">会員ステータス</th>
-				<% if @customer.is_active == true %>
-					<td><span class="badge" style="background:green">有効</span></td>
+				<% if @customer.is_deleted == true %>
+					<td><span class="badge" style="background:green">退会</span></td>
 				<% else %>
-					<td><span class="badge" style="background:red">退会</span></td>
+					<td><span class="badge" style="background:red">有効</span></td>
 				<% end %>
 			</tr>
 		</tbody>

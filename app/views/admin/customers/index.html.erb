@@ -20,10 +20,10 @@
 		</td>
 		<td><%= customer.last_name_kana %> <%= customer.first_name_kana %></td>
 		<td><%= customer.email %></td>
-		<% if customer.is_active == true %>
-			<td><span class="badge" style="background:green">有効</span></td>
+		<% if customer.is_deleted == true %>
+			<td><span class="badge" style="background:green">退会</span></td>
 		<% else %>
-			<td><span class="badge" style="background:red">退会</span></td>
+			<td><span class="badge" style="background:red">有効</span></td>
 		<% end %>
 	</tr>
 	<% end %>
